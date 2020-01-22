@@ -36,6 +36,13 @@ class _HomePageState extends State<HomePage> {
         padding: EdgeInsets.all(16),
         child: Column(
           children: <Widget>[
+            Observer(
+              builder: (_) => TextField(
+                onChanged: (value) {
+                  homeController.setBody(value);
+                },
+              ),
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: <Widget>[
@@ -48,13 +55,13 @@ class _HomePageState extends State<HomePage> {
                 RaisedButton(
                   child: Text("Patch"),
                   onPressed: () {
-                    homeController.patchData();
+                    /* homeController.patchData(); */
                   },
                 ),
                 RaisedButton(
                   child: Text("Delete"),
                   onPressed: () {
-                    homeController.deleteData();
+                    /* homeController.deleteData(); */
                   },
                 )
               ],
@@ -62,15 +69,15 @@ class _HomePageState extends State<HomePage> {
             Expanded(
               child: Observer(
                 builder: (_) {
-                  if (homeController.posts.error != null) {
+                  if (homeController.dataList.error != null) {
                     return Center(
                       child: Text('Error'),
                     );
                   }
-                  if (homeController.posts.value == null) {
+                  if (homeController.dataList.value == null) {
                     return Center(child: CircularProgressIndicator());
                   }
-                  var list = homeController.posts.value;
+                  var list = homeController.dataList.value;
                   return ListView.builder(
                     itemCount: list.length,
                     itemBuilder: (BuildContext context, int index) {

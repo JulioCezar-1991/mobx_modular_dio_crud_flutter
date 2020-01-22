@@ -1,21 +1,29 @@
-import 'package:crud_mobx/app/shared/models/data_model.dart';
+import 'package:crud_mobx/app/shared/models/data_create_model.dart';
+import 'package:crud_mobx/app/shared/models/data_list_model.dart';
 import 'package:crud_mobx/app/shared/util/constanst.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:dio/dio.dart';
+
+import '../models/data_model.dart';
 
 class DataRepository extends Disposable {
   final Dio dio;
 
   DataRepository(this.dio);
 
-  Future<List<DataModel>> getData() async {
+  Future<List<DataListModel>> getData() async {
     Response response = await dio.get(URL_BASE + '/posts');
     return (response.data as List)
-        .map((item) => DataModel.fromJson(item))
+        .map((item) => DataListModel.fromJson(item))
         .toList();
   }
 
-  postData() async {
+  Future<DataModel> postData(DataCreaterModel model) async {
+    Response response = await dio.post(URL_BASE + "/posts", data: model);
+    return DataModel.fromJson(response.data);
+  }
+
+  /* postsData() async {
     var corpo = ({
       "userId": 120,
       "id": null,
@@ -65,7 +73,7 @@ class DataRepository extends Disposable {
     Response response = await dio.delete(URL_BASE + "/posts/1-2312");
     print("resposta: ${response.statusCode}");
     print("resposta: ${response.data}");
-  }
+  } */
 
   @override
   void dispose() {}
