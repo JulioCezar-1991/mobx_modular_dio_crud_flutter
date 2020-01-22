@@ -63,7 +63,6 @@ class DataRepository extends Disposable {
 
   deleteData() async {
     Response response = await dio.delete(URL_BASE + "/posts/1-2312");
-
     print("resposta: ${response.statusCode}");
     print("resposta: ${response.data}");
   }

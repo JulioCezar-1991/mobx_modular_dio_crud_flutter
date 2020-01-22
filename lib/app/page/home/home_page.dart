@@ -1,4 +1,5 @@
 import 'package:crud_mobx/app/page/home/home_controller.dart';
+import 'package:crud_mobx/app/shared/widget/data_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -73,9 +74,9 @@ class _HomePageState extends State<HomePage> {
                   return ListView.builder(
                     itemCount: list.length,
                     itemBuilder: (BuildContext context, int index) {
-                      return ListTile(
-                        title: Text(list[index].title),
-                        subtitle: Text(list[index].body),
+                      return DataWidget(
+                        title: list[index].title,
+                        subtitle: list[index].body,
                       );
                     },
                   );
