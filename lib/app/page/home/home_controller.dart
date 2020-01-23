@@ -13,18 +13,17 @@ abstract class _HomeControllerBase with Store {
   final DataRepository repository;
 
   @observable
+  var dataCreaterModel = DataCreaterModel();
+
+  @observable
   ObservableFuture<List<DataListModel>> dataList;
 
   @observable
-  DataCreaterModel data;
-
-  _HomeControllerBase(this.repository) {
-    fetchData();
-  }
+  String body = '';
 
   @action
-  void setBody(String value) {
-    data.body = value;
+  void setBody(String newName) {
+    dataCreaterModel.body = newName;
   }
 
   @action
@@ -32,17 +31,48 @@ abstract class _HomeControllerBase with Store {
     dataList = repository.getData().asObservable();
   }
 
-  @computed
-  saveData() {
-    return _dataCreate(data);
+  _HomeControllerBase(this.repository) {
+    fetchData();
   }
 
-  Future<DataModel> _dataCreate(DataCreaterModel model) async {
+  void saveData() async {
+    _postCreate(dataCreaterModel);
+  }
+
+  Future<DataModel> _postCreate(DataCreaterModel model) async {
     try {
       var res = await repository.postData(model);
       return res;
-    } catch (ex) {
-      data = null;
+    } catch (error) {
+      dataCreaterModel = null;
+    }
+    return null;
+  }
+
+  void updateData() async {
+    _patchData(dataCreaterModel);
+  }
+
+  Future<DataModel> _patchData(DataCreaterModel model) async {
+    try {
+      var res = await repository.patchData(model);
+      return res;
+    } catch (error) {
+      dataCreaterModel = null;
+    }
+    return null;
+  }
+
+  void deleteData() async {
+    _deleteData();
+  }
+
+  Future<DataModel> _deleteData() async {
+    try {
+      var res = await repository.deleteData();
+      return res;
+    } catch (error) {
+      dataCreaterModel = null;
     }
     return null;
   }
