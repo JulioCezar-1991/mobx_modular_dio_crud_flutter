@@ -1,4 +1,4 @@
-# crud_mobx
+# crud_mobx_dio_modular
 
 A new Flutter project.
 
