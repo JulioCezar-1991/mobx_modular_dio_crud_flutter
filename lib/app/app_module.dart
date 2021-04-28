@@ -1,15 +1,15 @@
-import 'package:crud_mobx/app/app_controller.dart';
-import 'package:crud_mobx/app/page/home/home_controller.dart';
-import 'package:crud_mobx/app/page/home/home_page.dart';
-import 'package:crud_mobx/app/shared/util/constanst.dart';
 import 'package:dio/dio.dart';
-import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter/material.dart';
-import 'package:crud_mobx/app/app_widget.dart';
+import 'package:flutter_application_1/app/app_controller.dart';
+import 'package:flutter_application_1/app/app_widget.dart';
+import 'package:flutter_application_1/app/page/home/home_controller.dart';
+import 'package:flutter_application_1/app/page/home/home_page.dart';
+import 'package:flutter_application_1/app/shared/util/constanst.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 
 import 'shared/repositories/data_repository.dart';
 
-class AppModule extends MainModule {
+class AppModule extends Module {
   @override
   List<Bind> get binds => [
         Bind((i) => AppController()),
@@ -19,12 +19,9 @@ class AppModule extends MainModule {
       ];
 
   @override
-  List<Router> get routers => [
-        Router('/', child: (_, args) => HomePage()),
-      ];
+  final List<ModularRoute> routes = [
+    ChildRoute('/', child: (_, args) => HomePage()),
+  ];
 
-  @override
-  Widget get bootstrap => AppWidget();
-
-  static Inject get to => Inject<AppModule>.of();
+  final Widget bootstrap = AppWidget();
 }

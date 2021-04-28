@@ -1,7 +1,7 @@
-import 'package:crud_mobx/app/shared/models/data_create_model.dart';
-import 'package:crud_mobx/app/shared/models/data_list_model.dart';
-import 'package:crud_mobx/app/shared/util/constanst.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_application_1/app/shared/models/data_create_model.dart';
+import 'package:flutter_application_1/app/shared/models/data_list_model.dart';
+import 'package:flutter_application_1/app/shared/util/constanst.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:dio/dio.dart';
 

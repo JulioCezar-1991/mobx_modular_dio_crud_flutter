@@ -1,6 +1,6 @@
-import 'package:crud_mobx/app/shared/models/data_create_model.dart';
-import 'package:crud_mobx/app/shared/models/data_list_model.dart';
-import 'package:crud_mobx/app/shared/repositories/data_repository.dart';
+import 'package:flutter_application_1/app/shared/models/data_create_model.dart';
+import 'package:flutter_application_1/app/shared/models/data_list_model.dart';
+import 'package:flutter_application_1/app/shared/repositories/data_repository.dart';
 import 'package:mobx/mobx.dart';
 
 import '../../shared/models/data_model.dart';
